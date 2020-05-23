@@ -21,7 +21,8 @@ func Load(environment string) (*Config, error) {
 		return nil, fmt.Errorf("Environment not specified, got %s", environment)
 	}
 
-	fileName := fmt.Sprintf("./config/%s.yml", environment)
+	//fileName := fmt.Sprintf("./config/%s.yml", environment)
+	fileName := fmt.Sprintf("./../../config/%s.yml", environment)
 
 	bytesYmlfile, err := ioutil.ReadFile(fileName)
 	if err != nil {

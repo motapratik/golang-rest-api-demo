@@ -1,15 +1,13 @@
 server:
     port: 8000
     host: 0.0.0.0
-  
-  db:
+db:
     host: localhost
     port: 5432
     user: pratik
     password: DB_PASS_ENV
-    db_name: pratikdb
-  
-  jwt:
+    db_name: pratikdb  
+jwt:
     duration_minutes: 15
     refresh_duration_minutes: 15
     signing_algorithm: HS256
