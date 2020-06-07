@@ -5,6 +5,7 @@ import (
 	"fmt"
 
 	"github.com/motapratik/golang-rest-api-demo/config"
+	"github.com/motapratik/golang-rest-api-demo/pkg/api/registration"
 	"github.com/motapratik/golang-rest-api-demo/pkg/db/postgres"
 	"github.com/motapratik/golang-rest-api-demo/pkg/middleware/jwt"
 
@@ -58,5 +59,5 @@ func registerPublicRoutes(
 	jwt jwt.JWTService,
 ) {
 	//login.AllRoutes(mux, dbConnection, jwt)
-	//registration.AllRoutes(mux, dbConnection)
+	registration.AllRoutes(mux, dbConnection)
 }
