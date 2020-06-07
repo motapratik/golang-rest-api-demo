@@ -4,9 +4,9 @@ server:
 db:
     host: localhost
     port: 5432
-    user: pratik
+    user: postgres
     password: DB_PASS_ENV
-    db_name: pratikdb  
+    db_name: DemoDatabase  
 jwt:
     duration_minutes: 15
     refresh_duration_minutes: 15
