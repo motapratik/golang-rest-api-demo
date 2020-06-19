@@ -7,7 +7,6 @@ import (
 
 // RegistrationModel is used to decode registration request data
 type RegistrationModel struct {
-	Email        string `json:"email"`
 	MobileNumber string `json:"mobile_number"`
 	Name         string `json:"name"`
 	Password     string `json:"password"`

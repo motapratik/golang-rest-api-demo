@@ -18,21 +18,6 @@ func NewService(dbConnection *sql.DB) *Service {
 }
 
 func (s *Service) createRegistration(model RegistrationModel) error {
-	/*
-		isEmailValid, err := validateEmail(model.Email)
-		if err != nil {
-			return fmt.Errorf("email not valid. %s", err.Error())
-		}
-
-		if !isEmailValid {
-			return fmt.Errorf("email '%s' not valid. Make sure it has email format.", model.Email)
-		}
-
-		err = s.validateIfEmailAlreadyInDB(model)
-		if err != nil {
-			return fmt.Errorf("email not valid, %s", err.Error())
-		}
-	*/
 
 	isPassValid, err := validatePassword(model.Password)
 	if err != nil {
@@ -52,19 +37,14 @@ func (s *Service) createRegistration(model RegistrationModel) error {
 		return fmt.Errorf("mobile number '%s' not valid. Make sure it has 10 digits.", model.MobileNumber)
 	}
 
+	err = s.validateIfMobileAlreadyInDB(model)
+	if err != nil {
+		return fmt.Errorf("Number not valid, %s", err.Error())
+	}
+
 	model.Create(s.dbConnection)
 
 	return nil
-}
-
-func (s *Service) validateIfEmailAlreadyInDB(model RegistrationModel) error {
-	var name string
-	err := model.FindUserByEmail(s.dbConnection, model.Email).Scan(&name)
-	if name == "" && (err == nil || err == sql.ErrNoRows) {
-		return nil
-	}
-
-	return fmt.Errorf("email %s has alredy been taken by another user", model.Email)
 }
 
 func (s *Service) validateIfMobileAlreadyInDB(model RegistrationModel) error {
@@ -74,7 +54,7 @@ func (s *Service) validateIfMobileAlreadyInDB(model RegistrationModel) error {
 		return nil
 	}
 
-	return fmt.Errorf("email %s has alredy been taken by another user", model.Email)
+	return fmt.Errorf("Mobile Number %s has alredy been taken by another user", model.MobileNumber)
 }
 
 func validateEmail(email string) (bool, error) {
